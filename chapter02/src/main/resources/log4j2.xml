@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" monitorInterval="30">
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" status="WARN" monitorInterval="30">
     <!-- Properties元素必须在  Loggers, Filters, Appenders前面 -->
     <!-- Properites用来设置默认属性, 如果无法在指定的查找中找到该值，则将使用默认属性映射中的值。 -->
     <Properties>

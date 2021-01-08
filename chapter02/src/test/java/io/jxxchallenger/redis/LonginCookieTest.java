@@ -5,22 +5,22 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
-import io.lettuce.core.api.StatefulRedisConnection;
+import io.jxxchallenger.redis.test.AbstractRedisTest;
 
-public class LonginCookieTest extends AbstractClientTest {
+public class LonginCookieTest extends AbstractRedisTest {
 
     @Test
     public void loginCookie() {
-        StatefulRedisConnection<String, String> connection = redisClient.connect();
         
-        Chapter02.CleanSessionsThread target = new Chapter02.CleanSessionsThread(connection, 15);
+        
+        Chapter02.CleanSessionsThread target = new Chapter02.CleanSessionsThread(this.connection, 15);
         Thread thread = new Thread(target);
         thread.start();
         
         
         Chapter02 chapter02 = new Chapter02();
         IntStream.rangeClosed(1, 100).forEach(num -> {
-            chapter02.updateToken(connection, UUID.randomUUID().toString(), "User" + num, "itemX");
+            chapter02.updateToken(this.connection, UUID.randomUUID().toString(), "User" + num, "itemX");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -39,6 +39,6 @@ public class LonginCookieTest extends AbstractClientTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        connection.close();
+        
     }
 }

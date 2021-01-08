@@ -25,6 +25,15 @@
         </dependency>
         
         <dependency>
+            <groupId>io.jxxchallenger</groupId>
+            <artifactId>redis-in-action-test</artifactId>
+            <classifier>test</classifier>
+            <type>test-jar</type>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
