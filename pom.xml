@@ -122,6 +122,7 @@
         <module>chapter02</module>
         <module>redis-in-action-test</module>
         <module>chapter03</module>
+        <module>chapter04</module>
     </modules>
     <build>
         <pluginManagement>
