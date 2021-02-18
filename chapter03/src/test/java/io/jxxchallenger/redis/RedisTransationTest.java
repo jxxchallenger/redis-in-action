@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import io.jxxchallenger.redis.test.AbstractRedisTest;
+import io.lettuce.core.RedisClient;
 import io.lettuce.core.api.sync.RedisCommands;
 
 public class RedisTransationTest extends AbstractRedisTest {
@@ -15,8 +16,9 @@ public class RedisTransationTest extends AbstractRedisTest {
         String val = redisCommands.get("test");
         System.out.println(val);
         
+        RedisCommands<String, String> redisCommands2 = RedisClient.create("redis://123456789@localhost:6379/0").connect().sync();
         SetThread setThread = new SetThread(redisCommands);
-        GetThread getThread = new GetThread(redisCommands);
+        GetThread getThread = new GetThread(redisCommands2);
         Thread thread = new Thread(setThread, "set-thread");
         
         Thread thread2 = new Thread(getThread, "get-thread");
@@ -52,7 +54,7 @@ public class RedisTransationTest extends AbstractRedisTest {
         public void run() {
             while(run) {
                 redisCommands.multi();
-                Long t = redisCommands.incr("test");
+                redisCommands.incr("test");
                 
                 try {
                     Thread.sleep(500);
