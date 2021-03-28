@@ -3,7 +3,6 @@ package io.jxxchallenger.redis;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
