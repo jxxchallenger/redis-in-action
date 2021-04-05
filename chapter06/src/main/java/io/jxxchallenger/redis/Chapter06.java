@@ -105,4 +105,28 @@ public class Chapter06 {
         return true;
         
     }
+    
+    
+    public String acquireLockWithTime(RedisCommands<String, String> commands, String lockName, long timeout, long lockTimeout) {
+        String identifier = UUID.randomUUID().toString();
+        String lock = "lock:" + lockName;
+        long end = System.currentTimeMillis() + timeout;
+        while(System.currentTimeMillis() < end) {
+            if(commands.setnx(lock, identifier)) {
+                commands.expire(lock, lockTimeout);
+                return identifier;
+            }
+            
+            if(commands.ttl(lock) == -1) {
+                commands.expire(lock, lockTimeout);
+            }
+            
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        return "";
+    }
 }
