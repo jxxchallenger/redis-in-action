@@ -33,7 +33,7 @@ public class Chapter04 {
         String item = itemId + "." + sellerId;
         String inventory = "inventory:" + buyerId;
 
-        long end = System.currentTimeMillis();
+        long end = System.currentTimeMillis() + 10000;
 
         while(System.currentTimeMillis() < end) {
             commands.watch("market:", buyer);
