@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" status="WARN" monitorInterval="30">
+    <!-- Properties元素必须在  Loggers, Filters, Appenders前面 -->
+    <!-- Properites用来设置默认属性, 如果无法在指定的查找中找到该值，则将使用默认属性映射中的值。 -->
+    <Properties>
+        <Property name="hello">world</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - ${sys:hello} %msg%n" /> -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="io.jxxchallenger" level="debug" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
